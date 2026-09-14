@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=390, initial-scale=1">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/fonts/stylesheet.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="mobile-body">
+  <div class="feed-screen">
+    <video autoplay loop muted playsinline class="feed-video">
+      <source src="http://localhost:9000/media/{{manuscript.video}}" type="video/mp4">
+    </video>
+
+    <div class="feed-overlay">
+      <div class="feed-bottom">
+        <div class="feed-header">
+          <h2 class="feed-title">{{manuscript.title}}</h2>
+          <span class="feed-like">♥ {{manuscript.likes.length}}</span>
+        </div>
+
+        <p class="feed-description" id="desc">{{manuscript.description}}</p>
+        <button class="feed-more" onclick="document.getElementById('desc').classList.toggle('expanded')">больше/меньше</button>
+
+        <div class="feed-meta">
+          <div class="feed-fields">
+            <span class="feed-field">Век: {{manuscript.century}}</span>
+            <span class="feed-field">{{manuscript.sign}}</span>
+          </div>
+          <a href="/feed/{{manuscript.id}}?next=true" class="feed-next">▼</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{> navbar}}
+</body>
+</html>

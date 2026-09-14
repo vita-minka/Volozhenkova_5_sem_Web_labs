@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=390, initial-scale=1">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/fonts/stylesheet.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="mobile-body">
+  <div class="add-screen">
+    <h1 class="page-title">Добавление услуги</h1>
+
+    <section class="add-section">
+      <h3 class="section-title">Медиа</h3>
+      <label class="field-label">Изображение</label>
+      <input type="text" class="field-input" value="{{manuscript.image}}" placeholder="image.jpg">
+
+      <label class="field-label">Видео</label>
+      <input type="text" class="field-input" value="{{manuscript.video}}" placeholder="video.jpg">
+    </section>
+
+    <section class="add-section">
+      <h3 class="section-title">Текст и поля</h3>
+      <label class="field-label">Название</label>
+      <input type="text" class="field-input" value="{{manuscript.title}}">
+
+      <label class="field-label">Описание</label>
+      <textarea class="field-input field-textarea">{{manuscript.description}}</textarea>
+
+      <label class="field-label">Век</label>
+      <input type="number" class="field-input field-full" value="{{manuscript.century}}">
+
+      <label class="field-label">Признак</label>
+      <input type="text" class="field-input" value="{{manuscript.sign}}">
+    </section>
+  </div>
+
+  {{> navbar}}
+</body>
+</html>

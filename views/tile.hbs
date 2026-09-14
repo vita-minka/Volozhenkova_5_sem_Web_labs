@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=390, initial-scale=1">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/fonts/stylesheet.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="mobile-body">
+  <div class="tile-screen">
+    <h1 class="page-title">Рукописи</h1>
+
+    <form action="/manuscripts" method="GET" class="filter-form">
+      <input type="number" name="century" class="filter-input" placeholder="Век" value="{{centuryFilter}}">
+      <button type="submit" class="filter-btn">Применить</button>
+    </form>
+
+    <div class="tile-grid">
+      {{#each manuscripts}}
+        <a href="/feed/{{this.id}}" class="tile-card">
+          <img src="http://localhost:9000/media/{{this.image}}" alt="{{this.title}}" class="tile-image">
+          <div class="tile-info">
+            <h4 class="tile-title">{{this.title}}</h4>
+            <div class="tile-bottom">
+              <span class="tile-likes">♥ {{this.likes.length}}</span>
+              <span class="tile-arrow">→</span>
+            </div>
+          </div>
+        </a>
+      {{else}}
+        <p class="empty">Ничего не найдено</p>
+      {{/each}}
+    </div>
+  </div>
+
+  {{> navbar}}
+</body>
+</html>
