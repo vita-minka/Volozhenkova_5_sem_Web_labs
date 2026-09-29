@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=390, initial-scale=1">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/fonts/stylesheet.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="mobile-body">
+  <div class="tile-screen">
+    <h1 class="page-title">Этапы эволюции</h1>
+
+    <form action="/stages" method="GET" class="filter-form">
+      <select name="century" class="filter-select">
+        <option value="">Все века</option>
+        <option value="11" {{#if (eq centuryFilter '11')}}selected{{/if}}>XI век</option>
+        <option value="12" {{#if (eq centuryFilter '12')}}selected{{/if}}>XII век</option>
+        <option value="13" {{#if (eq centuryFilter '13')}}selected{{/if}}>XIII век</option>
+        <option value="14" {{#if (eq centuryFilter '14')}}selected{{/if}}>XIV век</option>
+        <option value="15" {{#if (eq centuryFilter '15')}}selected{{/if}}>XV век</option>
+        <option value="16" {{#if (eq centuryFilter '16')}}selected{{/if}}>XVI век</option>
+        <option value="17" {{#if (eq centuryFilter '17')}}selected{{/if}}>XVII век</option>
+      </select>
+      <button type="submit" class="filter-btn">Применить</button>
+    </form>
+
+    <div class="tile-grid">
+      {{#each stages}}
+        <div class="tile-card-wrapper">
+          <a href="/feed/{{this.id}}" class="tile-card">
+            <img src="http://localhost:9000/media/{{this.imageUrl}}" alt="{{this.title}}" class="tile-image" onerror="this.src='/img/default-image.jpg'">
+            <div class="tile-info">
+              <h4 class="tile-title">{{this.title}}</h4>
+              <div class="tile-bottom">
+                <span class="tile-likes">♥ {{#if this.likes}}{{this.likes.length}}{{else}}0{{/if}}</span>
+                <span class="tile-arrow">→</span>
+              </div>
+            </div>
+          </a>
+
+          <form action="/delete-stage" method="POST" class="delete-form">
+            <input type="hidden" name="stage_id" value="{{this.id}}">
+            <button type="submit" class="delete-btn">🗑</button>
+          </form>
+        </div>
+      {{else}}
+        <p class="empty">Ничего не найдено</p>
+      {{/each}}
+    </div>
+  </div>
+
+  {{> navbar}}
+</body>
+</html>

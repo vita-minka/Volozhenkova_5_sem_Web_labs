@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=390, initial-scale=1">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/fonts/stylesheet.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="mobile-body">
+  <div class="add-screen">
+    <h1 class="page-title">Добавление услуги</h1>
+
+    {{#if stage}}
+      {{!-- ЧЕРНОВИК ЕСТЬ — форма публикации --}}
+      <form action="/publish" method="POST" class="add-section">
+        <h3 class="section-title">Медиа</h3>
+
+        <label class="file-field">
+          <img src="http://localhost:9000/media/{{stage.imageUrl}}" alt="preview" class="file-preview" onerror="this.src='/img/default-image.jpg'">
+          <input type="file" accept="image/*" hidden>
+          <span class="file-hint">Выбрать фото</span>
+        </label>
+
+        <label class="file-field">
+          <video class="file-preview" autoplay loop muted playsinline onerror="this.src='/img/default-video.mp4'">
+            {{#if stage.videoUrl}}
+              <source src="http://localhost:9000/media/{{stage.videoUrl}}" type="video/mp4">
+            {{else}}
+              <source src="/img/default-video.mp4" type="video/mp4">
+            {{/if}}
+          </video>
+          <input type="file" accept="video/*" hidden>
+          <span class="file-hint">Выбрать видео</span>
+        </label>
+
+        <h3 class="section-title">Публикация</h3>
+
+        <input type="hidden" name="id" value="{{stage.id}}">
+
+        <label class="field-label">Название</label>
+        <input type="text" name="title" class="field-input" value="{{stage.title}}" required>
+
+        <label class="field-label">Краткое описание</label>
+        <textarea name="description" class="field-input field-textarea" required>{{stage.description}}</textarea>
+
+        <label class="field-label">Век</label>
+        <input type="number" name="century" class="field-input" value="{{stage.century}}" required>
+
+        <label class="field-label">Признак</label>
+        <input type="text" name="sign" class="field-input" value="{{stage.sign}}" required>
+
+        <label class="field-checkbox">
+          <input type="checkbox" checked disabled> Ять
+        </label>
+
+        <button type="submit" class="filter-btn">Опубликовать</button>
+      </form>
+
+    {{else}}
+      {{!-- ЧЕРНОВИКА НЕТ — форма создания --}}
+      <form action="/add" method="POST" class="add-section">
+        <h3 class="section-title">Медиа</h3>
+
+        <label class="file-field">
+          <img src="/img/default-image.jpg" alt="preview" class="file-preview">
+          <input type="file" accept="image/*" hidden>
+          <span class="file-hint">Выбрать фото</span>
+        </label>
+
+        <label class="file-field">
+          <video class="file-preview" autoplay loop muted playsinline>
+            <source src="/img/default-video.mp4" type="video/mp4">
+          </video>
+          <input type="file" accept="video/*" hidden>
+          <span class="file-hint">Выбрать видео</span>
+        </label>
+
+        <h3 class="section-title">Создание</h3>
+
+        <label class="field-label">Название</label>
+        <input type="text" name="title" class="field-input" required>
+
+        <label class="field-label">Фото (URL или имя файла)</label>
+        <input type="text" name="imageUrl" class="field-input" placeholder="default-image.jpg">
+
+        <label class="field-label">Видео (URL или имя файла)</label>
+        <input type="text" name="videoUrl" class="field-input" placeholder="default-video.mp4">
+
+        <label class="field-label">Век</label>
+        <input type="number" name="century" class="field-input" value="11" required>
+
+        <label class="field-label">Признак</label>
+        <input type="text" name="sign" class="field-input" value="Ять" required>
+
+        <label class="field-checkbox">
+          <input type="checkbox" checked disabled> Ять
+        </label>
+
+        <button type="submit" class="filter-btn">Далее</button>
+      </form>
+    {{/if}}
+  </div>
+
+  {{> navbar}}
+</body>
+</html>

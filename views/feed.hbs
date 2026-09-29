@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=390, initial-scale=1">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/fonts/stylesheet.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="mobile-body">
+  <div class="feed-screen">
+    <video autoplay loop muted playsinline class="feed-video">
+      {{#if stage.videoUrl}}
+        <source src="http://localhost:9000/media/{{stage.videoUrl}}" type="video/mp4">
+      {{else}}
+        <source src="/img/default-video.mp4" type="video/mp4">
+      {{/if}}
+    </video>
+
+    <div class="feed-overlay">
+      <div class="feed-bottom">
+        <div class="feed-left">
+          <h2 class="feed-title">{{stage.title}}</h2>
+          <p class="feed-description" id="desc">{{stage.description}}</p>
+        </div>
+
+        <div class="feed-right">
+          <span class="feed-like">♥ {{#if stage.likes}}{{stage.likes.length}}{{else}}0{{/if}}</span>
+
+          <div class="feed-fields">
+            <span class="feed-field">Век: {{stage.century}}</span>
+            <span class="feed-field">Признак: {{stage.sign}}</span>
+          </div>
+
+          <button class="feed-more" onclick="document.getElementById('desc').classList.toggle('expanded')">больше/меньше</button>
+
+          <a href="/feed/{{stage.id}}?next=true" class="feed-next">▼</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{> navbar}}
+</body>
+</html>

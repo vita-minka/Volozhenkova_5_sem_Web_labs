@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgres:18-alpine
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: stages_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+  adminer:
+    image: adminer:latest
+    container_name: adminer_ui
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
+
+  minio:
+    container_name: minio_storage
+    image: minio/minio:latest
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: root
+      MINIO_ROOT_PASSWORD: rootpassword
+      MINIO_CONSOLE_ADDRESS: ":9001"
+    volumes:
+      - manuscript_first_lab_minio-data:/data
+    command: server /data --console-address ":9001"
+
+volumes:
+  postgres_data:
+  manuscript_first_lab_minio-data:
+    external: true
