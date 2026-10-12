@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=390, initial-scale=1">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/fonts/stylesheet.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="mobile-body">
+  <div class="tile-screen">
+    <h1 class="page-title">Этапы эволюции</h1>
+
+    <form action="/stages" method="GET" class="filter-form">
+      <input type="date" name="date" class="filter-select" value="{{dateFilter}}">
+      <button type="submit" class="filter-btn">Применить</button>
+    </form>
+
+    <div class="tile-grid">
+      {{#each stages}}
+        <div class="tile-card-wrapper">
+          <a href="/feed/{{this.id}}" class="tile-card">
+            <img src="http://localhost:9000/media/{{this.imageUrl}}" alt="{{this.title}}" class="tile-image" onerror="this.src='/img/default-image.jpg'">
+            <div class="tile-info">
+              <h4 class="tile-title">{{this.title}}</h4>
+              <div class="tile-bottom">
+                <span class="tile-likes">♥ {{this.likesCount}}</span>
+                <span class="tile-arrow">→</span>
+              </div>
+            </div>
+          </a>
+
+          <form action="/delete-stage" method="POST" class="delete-form">
+            <input type="hidden" name="stage_id" value="{{this.id}}">
+            <button type="submit" class="delete-btn">🗑</button>
+          </form>
+        </div>
+      {{else}}
+        <p class="empty">Ничего не найдено</p>
+      {{/each}}
+    </div>
+  </div>
+
+  {{> navbar}}
+</body>
+</html>

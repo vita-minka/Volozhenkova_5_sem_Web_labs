@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=390, initial-scale=1">
+  <title>Вход</title>
+  <link rel="stylesheet" href="/fonts/stylesheet.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="mobile-body">
+  <div class="add-screen">
+    <h1 class="page-title">Вход</h1>
+
+    <form action="/api/auth/login" method="POST" class="add-section">
+      <h3 class="section-title">Аутентификация</h3>
+      <label class="field-label">Email</label>
+      <input type="email" name="email" class="field-input" required>
+
+      <label class="field-label">Пароль</label>
+      <input type="password" name="password" class="field-input" required>
+
+      <button type="submit" class="filter-btn">Войти</button>
+    </form>
+
+    <div class="add-section">
+      <p style="text-align:center;font-size:13px;">
+        <a href="/register" style="color:var(--accent);">Регистрация</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

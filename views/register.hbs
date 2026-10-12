@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=390, initial-scale=1">
+  <title>Регистрация</title>
+  <link rel="stylesheet" href="/fonts/stylesheet.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="mobile-body">
+  <div class="add-screen">
+    <h1 class="page-title">Регистрация</h1>
+
+    <form action="/api/auth/register" method="POST" class="add-section">
+      <h3 class="section-title">Новый пользователь</h3>
+      <label class="field-label">Email</label>
+      <input type="email" name="email" class="field-input" required>
+
+      <label class="field-label">Имя</label>
+      <input type="text" name="username" class="field-input">
+
+      <label class="field-label">Пароль</label>
+      <input type="password" name="password" class="field-input" required>
+
+      <button type="submit" class="filter-btn">Зарегистрироваться</button>
+    </form>
+
+    <div class="add-section">
+      <p style="text-align:center;font-size:13px;">
+        <a href="/login" style="color:var(--accent);">Уже есть аккаунт</a>
+      </p>
+    </div>
+  </div>
+</body>
+</html>
