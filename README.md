@@ -1,4 +1,4 @@
-# Lab 1 — Letters Evolution Stages (SSR)
+# Letters Evolution Stages (SSR)
 
 Лабораторная работа №1: базовый интерфейс на NestJS + Handlebars.
 Тема: **этапы-интервалы эволюции написания букв** (начертание «ять», твёрдый знак «ъ», «фита»).
